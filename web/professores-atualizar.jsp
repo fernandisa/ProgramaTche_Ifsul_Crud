@@ -21,7 +21,7 @@
             
         }
         
-    
+
 
     
 
@@ -33,6 +33,7 @@
                 
                 <form action="professores-atualizar-ok.jsp" method="post">
                     <label>Siape:</label><input type="text" name="txtSiape" value="<%=obj.getSiape()%>" readonly="readonly"/><br />
+                   <%-- o readonly n permite ao usuario tocar nesse campo --%>
                     <label>Nome:</label><input type="text" name="txtNome" value="<%=obj.getNome()%>" /><br />
                     <input type="submit" value="Atualizar" />
                 </form>

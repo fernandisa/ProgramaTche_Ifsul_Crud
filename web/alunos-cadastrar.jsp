@@ -1,4 +1,5 @@
 <%@include file="cabecalho.jsp"%>
+
         <div>
             <h1 class="centro">Cadastro de Alunos</h1>
             

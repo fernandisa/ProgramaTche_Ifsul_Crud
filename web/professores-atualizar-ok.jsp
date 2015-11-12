@@ -16,7 +16,7 @@ String txtNome = request.getParameter("txtNome");
 ProfessorDAO dao = new ProfessorDAO();
 //busquei o professor pelo siape (registro pela C.Primária)
 Professor obj = dao.buscarPorChavePrimaria(txtSiape);
-//Se não encontrou o registro volta pra lista
+//Se não encontrou o registro volta pra listar 
 if(obj == null)
 {
     response.sendRedirect("professores.jsp");
@@ -24,7 +24,7 @@ if(obj == null)
 }
 //Atualizar as demais informações enviadas
 obj.setNome(txtNome);
-
+// chamo a atualizar
 dao.alterar(obj);
 
 
