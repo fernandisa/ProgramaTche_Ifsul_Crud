@@ -1,6 +1,5 @@
 <%@page import="modelo.Professor"%>
 <%@page import="java.util.List"%>
-<%@page import="java.util.List"%>
 <%@page import="dao.ProfessorDAO"%>
 <%@include file="cabecalho.jsp"%>
 <%
@@ -40,7 +39,7 @@ else
                         <tr>
                             <th>Siape</th>
                             <th>Nome</th>
-                            
+
                             <th>Ações</th>
                         </tr>
                         <%
@@ -53,7 +52,7 @@ else
                             <td><a href="professores-atualizar.jsp?siape=<%=item.getSiape()%>">Editar</a>
                                 <a href="professores-excluir-ok.jsp?siape=<%=item.getSiape()%>">Excluir</a>
                             </td>
-                            
+
                         </tr>
                        <%
                         }

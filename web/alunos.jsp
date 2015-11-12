@@ -1,4 +1,30 @@
+<%@page import="modelo.Aluno"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.AlunoDAO"%>
 <%@include file="cabecalho.jsp"%>
+<%
+AlunoDAO dao = new AlunoDAO();
+
+List<Aluno> lista;
+//Verificar se veio algo do filtro, 
+//se vier eu filtro pro nome
+//caso contrário eu trago todos os professores
+if(request.getParameter("txtFiltro")!= null && request.getParameter("txtFiltro")!= "")
+{
+    String txtFiltro = request.getParameter("txtFiltro");
+     lista = dao.listar(txtFiltro);
+  
+}
+else
+{
+    lista = dao.listar();
+}
+
+%>
+
+
+
+
         <div>
             <h1 class="centro">Alunos</h1>
             
@@ -7,45 +33,36 @@
                 <form>
                     <input type="text" />
                     <input type="submit" value="Pesquisar"/><br />
-                    <table>
+                   
+                       <table>
                         <tr>
-                            <th>Matrícula</th>
+                            <th>Matricula</th>
                             <th>Nome</th>
                             <th>Disciplinas</th>
                             <th>Matriculado</th>
                             <th>Ações</th>
+                          
                         </tr>
+                        <%
+                        for(Aluno item:lista)
+                        {
+                        %>
                         <tr>
-                            <td>1</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                            <td><a href="alunos-atualizar.jsp">Editar</a>
-                                <a href="alunos-excluir-ok.jsp?matricula=1">Excluir</a>
+                            <td><%=item.getMatricula()%></td>
+                            <td><%=item.getNome()%></td>
+                            <td><%=item.getDisciplinas()%></td>
+                            <td><%=item.getAtivo()%></td>
+
+                            <td><a href="alunos-atualizar.jsp?siape=<%=item.getMatricula()%>">Editar</a>
+                                <a href="alunos-excluir-ok.jsp?siape=<%=item.getMatricula()%>">Excluir</a>
                             </td>
                             
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                            <td><a href="alunos-atualizar.jsp">Editar</a>
-                                <a href="alunos-excluir-ok.jsp?matricula=2">Excluir</a>
-                            </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                            <td><a href="alunos-editar.jsp">Editar</a>
-                                <a href="alunos-excluir.jsp">Excluir</a>
-                            </td>
-                            
-                        </tr>
+                       <%
+                        }
+                       %>
                     </table>
+                  
                     
                 </form>
             </div>

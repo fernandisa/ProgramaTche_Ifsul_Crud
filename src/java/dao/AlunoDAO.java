@@ -3,7 +3,9 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import modelo.Aluno;
+import modelo.Professor;
 /**
  *
  * @author marcelosiedler
@@ -34,6 +36,17 @@ public class AlunoDAO {
 
     public List<Aluno> listar() throws Exception {
         return em.createNamedQuery("Aluno.findAll").getResultList();
+    }
+    
+      public List<Aluno> listar(String nome) throws Exception {
+        //passar o parâmetro pra query
+         TypedQuery<Aluno> query = 
+                 em.createNamedQuery("Professor.findByName", Aluno.class);
+         
+         //Seto o parâmetro
+         query.setParameter("nome", '%' + nome + '%');
+         //retorno minha lista
+         return query.getResultList();
     }
     
     public void alterar(Aluno obj) throws Exception {
